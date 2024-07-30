@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 // Routes
 const tasksRouter = require('./routes/tasks');
-app.use('/tasks', tasksRouter); // This should match the base URL in your Angular service
+app.use('/tasks', tasksRouter); 
 
 mongoose.connect('mongodb://localhost:27017/tracker')
   .then(() => {
@@ -23,10 +23,8 @@ mongoose.connect('mongodb://localhost:27017/tracker')
     console.error('Error connecting to MongoDB:', err);
   });
 
-// Import and use the reminder check function
 const checkReminders = require('./routes/reminder');
 
-// Create WebSocket server
 const wss = new WebSocketServer({ port: 8080 });
 
 wss.on('connection', ws => {
